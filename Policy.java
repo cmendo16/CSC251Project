@@ -159,7 +159,7 @@ public class Policy
    Method that calculates and returns the price of the insurance policy
    @return the price of the insurance policy 
    */
-   public double getInsurancePolicyPrice()
+   public double getPolicyPrice()
    {
      double insurancePrice = 0; 
      final int BASE_FEE = 600; // insurance policy has a base fee of $600 
@@ -178,24 +178,19 @@ public class Policy
          insurancePrice += AGE_FEE;
          
       }
-      else {
-         return insurancePrice; // insurance price just stays the same if the policy holder is not over the age of 50 
-      }
-      
+     
      // if the policyholder is a smoker, there is an addtional fee
      if (holderSmokingStatus.equalsIgnoreCase("Smoker"))
      {
       insurancePrice += SMOKER_FEE;
      }
-     else if (holderSmokingStatus.equalsIgnoreCase("Non-smoker")) {
-     return insurancePrice; // if the policyHolder is not a smoker, then there is no smoker fee. 
-     
-     }
      
      // if the policyHolder has a BMI of over 35, there is an additonal fee
      if (calculateBMI() > BMI_THRESHOLD)
      {
-         insurancePrice += (calculateBMI() - BMI_THRESHOLD) * 20; // im not sure if this is correct. double check 
+         double fee = 0; 
+         fee = (calculateBMI() - BMI_THRESHOLD) * 20;
+         insurancePrice += fee;; // im not sure if this is correct. double check 
          // may need to create a separate variable for the additional fee. 
      }
     
