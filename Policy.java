@@ -55,30 +55,39 @@ public class Policy
       policyNumber = policyNum; 
    }
    /**
+   Method to set the name of the provider 
+   @param provName 
    */
    public void setProviderName(String provName) 
    {
        providerName = provName; 
    }
    /**
+   Method to set the policy holder's first name 
+   @param firstName 
    */
    public void setHolderFirstName(String firstName)
    {
       policyHolderFirstName = firstName; 
    }
    /**
+   Method to set the policy holder's last name 
+   @param lastName 
    */
    public void setHolderLastName(String lastName)
    {
       policyHolderLastName = lastName;
    }
    /**
+   Method to set the policy holder's age 
+   @param age 
    */
    public void setHolderAge(int age) 
    {  
     policyHolderAge = age; 
    }
    /**
+   policyto set the smoking status of the 
    */
    public void setSmokingStatus(String smokingStatus)
    {
@@ -153,7 +162,8 @@ public class Policy
    */
    public double calculateBMI()
    {
-      return (holderWeight * 703) / (Math.pow(holderHeight, 2));
+      final int CONVERSION_FACTOR = 703;
+      return (holderWeight * CONVERSION_FACTOR) / (Math.pow(holderHeight, 2));
    }
    /**
    Method that calculates and returns the price of the insurance policy
@@ -167,7 +177,8 @@ public class Policy
      final int AGE_FEE = 75; // if the policy holder is older than 50, there is an additional fee
      final int SMOKER_FEE = 100; // if the policy holder is a smoker, there is an additional fee 
      final int BMI_THRESHOLD = 35; // if the policy holder has a BMI over 35, there is an additional fee
-     // make sure to avoid having stale data. 
+     final int BMI_ADDITIONAL_FEE = 20; 
+     
      insurancePrice += BASE_FEE; 
      
      // using if-else structures in order to determine if any additional fees need to be added to the insurance policy 
@@ -189,10 +200,9 @@ public class Policy
      if (calculateBMI() > BMI_THRESHOLD)
      {
          double fee = 0; 
-         fee = (calculateBMI() - BMI_THRESHOLD) * 20;
-         insurancePrice += fee;; // im not sure if this is correct. double check 
-         // may need to create a separate variable for the additional fee. 
-     }
+         fee = (calculateBMI() - BMI_THRESHOLD) * BMI_ADDITIONAL_FEE;
+         insurancePrice += fee;;
+      }
     
      return insurancePrice;
    }
