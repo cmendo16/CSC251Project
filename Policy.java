@@ -201,7 +201,7 @@ public class Policy
      {
          double fee = 0; 
          fee = (calculateBMI() - BMI_THRESHOLD) * BMI_ADDITIONAL_FEE;
-         insurancePrice += fee;;
+         insurancePrice += fee;
       }
     
      return insurancePrice;
