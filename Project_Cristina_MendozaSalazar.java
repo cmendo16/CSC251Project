@@ -48,6 +48,7 @@ public class Project_Cristina_MendozaSalazar
       // creating an object of the Policy class 
       Policy policy = new Policy(policyNum, pName, holderFirstName, holderLastName, age, smokerStatus, height, weight); 
       System.out.println(); 
+      
       // outputting necessary information 
       System.out.println("Policy Number: " + policy.getPolicyNumber()); 
       System.out.println("Provider Name: " + policy.getProviderName()); 

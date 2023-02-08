@@ -49,6 +49,8 @@ public class Policy
    }
    // The following are the class's mutator (setter) methods 
    /**
+   Method to set the policy number 
+   @param policyNum The policy number 
    */
    public void setPolicyNumber(int policyNum) 
    {
@@ -87,27 +89,35 @@ public class Policy
     policyHolderAge = age; 
    }
    /**
-   policyto set the smoking status of the 
+   Method to set the smoking status 
+   @param smokingStatus The smoking status 
    */
    public void setSmokingStatus(String smokingStatus)
    {
       holderSmokingStatus = smokingStatus; 
    }
    /**
+   Method to set the height of the policy holder 
+   @param height The policy holder's height 
    */
    public void setHolderHeight(double height)
    {
       holderHeight = height; 
    }
    /**
+   Method to set the weight of the policy holder 
+   @param weight The policyHolder's weight 
    */
    public void setHolderWeight(double weight) 
    {
       holderWeight = weight;
    }
+   
    // Below are the accessor (getter)  methods for each field 
    
     /**
+    Method to get the policy number 
+    @return the policy number 
    */
 
    public int getPolicyNumber()
@@ -115,42 +125,56 @@ public class Policy
       return policyNumber; 
    }
     /**
+    Method to get the provider name 
+    @return The name of the provider 
    */
    public String getProviderName()
    {
       return providerName; 
    }
    /**
+   Method to get the first name of the policy holder 
+   @return The policy holder's first name 
    */
    public String getHolderFirstName() 
    {
       return policyHolderFirstName;
    }
    /**
+   Method to get the last name of the policy holder
+   @return The policy holder's last name 
    */
    public String getHolderLastName()
    {
       return policyHolderLastName; 
    }
    /**
+   Method to get the age of the policy holder 
+   @return The age of the policy holder 
    */
    public int getHolderAge() 
    {
       return policyHolderAge; 
    }
    /**
+   Method to get the smoking status 
+   @return the smoking status of the policy holder 
    */
    public String getSmokingStatus()
    {
       return holderSmokingStatus; 
    }
    /**
+   Method to get the height of the policy holder 
+   @return the height of the policy holder 
    */
    public double getHeight()
    {
       return holderHeight; 
    }
    /**
+   Method to get the weight of the policy holder 
+   @return the weight of the policy holder 
    */
    public double getWeight()
    {
