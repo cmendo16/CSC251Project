@@ -1,7 +1,10 @@
 import java.util.Scanner; // needed for the scanner class 
-public class Project_Cristina_MendozaSalazar
+import java.io.*; // needed for files 
+import java.util.ArrayList; // needed to use the ArrayList class
+
+public class Project_Cristina_MendozaSalazar 
 {
-   public static void main(String[] args)
+   public static void main(String[] args) throws IOException
    {
       Scanner in = new Scanner(System.in); // needed to read user input 
       
@@ -15,53 +18,80 @@ public class Project_Cristina_MendozaSalazar
       double height = 0.0; // to hold the policy holder's height 
       double weight = 0.0; // to hold the policy holder's weight 
       
-      // asking user to input required information 
-      System.out.print("Please enter the Policy Number: " ); 
-      policyNum = in.nextInt(); 
+            
+     //  // creating an object of the Policy class 
+//       Policy policy = new Policy(policyNum, pName, holderFirstName, holderLastName, age, smokerStatus, height, weight); 
+//       System.out.println(); 
+
+
+         
+      // declaring an arrayList that will hold policy objects 
+      ArrayList<Policy> policy = new ArrayList<>(); 
       
-      in.nextLine(); 
+      // declaring policy object 
+      Policy p; 
       
-      System.out.print("\nPlease enter the Provider Name: "); 
-      pName = in.nextLine(); 
+      // open the file 
+      File file = new File("PolicyInformation.txt"); 
       
-      System.out.print("\nPlease enter the Policyholder's First Name: "); 
-      holderFirstName = in.nextLine(); 
+      // check to make sure that the file exists 
+      while(!file.exists())
+      {
+         System.out.println("Unable to locate file."); 
+         System.exit(0); // exiting the program 
       
-      System.out.print("\nPlease enter the Policyholder's Last Name: "); 
-      holderLastName = in.nextLine(); 
+      }
       
-      System.out.print("\nPlease enter the Policyholder's Age: "); 
-      age = in.nextInt(); 
+      // creating scanner object and passing file object as an argument 
+      Scanner inputFile = new Scanner(file); 
       
-      in.nextLine(); 
+      // use a while loop to process the file 
+      while(inputFile.hasNext())
+      {
+         // interact with the file here 
+         policyNum = inputFile.nextInt();   
+         pName = inputFile.nextLine();  
+         holderFirstName = inputFile.nextLine(); 
+         holderLastName = inputFile.nextLine();  
+         age = inputFile.nextInt(); 
+         smokerStatus = inputFile.nextLine();  
+         height = inputFile.nextDouble(); 
+         weight = inputFile.nextDouble(); 
+         
+         if(inputFile.hasNext())
+         {
+            inputFile.nextLine(); // clearing the newline 
+         }
+         if(inputFile.hasNext())
+         {
+            inputFile.nextLine(); // skip the blankline 
+         }
+         
+         // adding a new policy object to policy ArrayList for each iteration 
+         policy.add(new Policy(policyNum, pName, holderFirstName, holderLastName, age, smokerStatus, height, weight)); 
+         
         
-      System.out.print("\nPlease enter the PolicyHolder's Smoking Status (smoker/non-smoker): "); 
-      smokerStatus = in.nextLine(); 
-      
-      System.out.print("\nPlease enter the Policyholder's Height (in inches): ");
-      height = in.nextDouble(); 
-      
-      System.out.print("\nPlease enter the Policyholder's Weight (in pounds): "); 
-      weight = in.nextDouble(); 
+      }
       
       
-      // creating an object of the Policy class 
-      Policy policy = new Policy(policyNum, pName, holderFirstName, holderLastName, age, smokerStatus, height, weight); 
-      System.out.println(); 
+      // closing the file 
+      inputFile.close(); 
+      
       
       // outputting necessary information 
-      System.out.println("Policy Number: " + policy.getPolicyNumber()); 
-      System.out.println("Provider Name: " + policy.getProviderName()); 
-      System.out.println("Policyholder's First Name: " + policy.getHolderFirstName()); 
-      System.out.println("Policyholder's Last Name: "+ policy.getHolderLastName()); 
-      System.out.println("Policyholder's Age: " + policy.getHolderAge()); 
-      System.out.println("Policyholder's Smoking Status: " + policy.getSmokingStatus() );
-      System.out.println("Policyholder's Height: " + policy.getHeight() + " inches"); 
-      System.out.println("Policyholder's Weight: " +policy.getWeight() + " pounds"); 
-      System.out.printf("Policyholder's BMI: %,.2f", policy.calculateBMI());
-      System.out.println(); 
-      System.out.printf("Policy Price: $%,.2f", policy.getPolicyPrice());
      
+     //  System.out.println("Policy Number: " + policy.getPolicyNumber()); 
+//       System.out.println("Provider Name: " + policy.getProviderName()); 
+//       System.out.println("Policyholder's First Name: " + policy.getHolderFirstName()); 
+//       System.out.println("Policyholder's Last Name: "+ policy.getHolderLastName()); 
+//       System.out.println("Policyholder's Age: " + policy.getHolderAge()); 
+//       System.out.println("Policyholder's Smoking Status: " + policy.getSmokingStatus() );
+//       System.out.println("Policyholder's Height: " + policy.getHeight() + " inches"); 
+//       System.out.println("Policyholder's Weight: " +policy.getWeight() + " pounds"); 
+//       System.out.printf("Policyholder's BMI: %,.2f", policy.calculateBMI());
+//       System.out.println(); 
+//       System.out.printf("Policy Price: $%,.2f", policy.getPolicyPrice());
+//      
       
    }
 }
