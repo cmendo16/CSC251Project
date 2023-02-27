@@ -78,7 +78,31 @@ public class Project_Cristina_MendozaSalazar
       // closing the file 
       inputFile.close(); 
       
+          for(int i = 0; i < policy.size(); i++)
+         {
          
+            System.out.println("\nPolicy Number: " + policy.get(i).getPolicyNumber()); 
+            System.out.println("Provider Name: " + policy.get(i).getProviderName()); 
+            System.out.println("Policyholder's First Name: " + policy.get(i).getHolderFirstName()); 
+            System.out.println("Policyholder's Last Name: "+ policy.get(i).getHolderLastName()); 
+            System.out.println("Policyholder's Age: " + policy.get(i).getHolderAge()); 
+            System.out.println("Policyholder's Smoking Status (smoker/non-smoker): " + policy.get(i).getSmokingStatus());
+            System.out.println("Policyholder's Height: " + policy.get(i).getHeight() + " inches"); 
+            System.out.println("Policyholder's Weight: " +policy.get(i).getWeight() + " pounds"); 
+            System.out.printf("Policyholder's BMI: %,.2f", policy.get(i).calculateBMI());
+            System.out.printf("\nPolicy Price: $%,.2f", policy.get(i).getPolicyPrice());
+            System.out.println();
+            
+            // checking to see how many smokers and non-smokers there are 
+            if(policy.get(i).getSmokingStatus().equals("smoker"))
+            {
+               smoker += 1;
+            }
+            else if(policy.get(i).getSmokingStatus().equals("non-smoker"))
+            {
+               nonsmoker += 1; 
+            }
+          }   
         
 
        
