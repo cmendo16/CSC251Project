@@ -2,9 +2,9 @@
 public class Policy 
 {
    // declaring all necessary fields 
-   private int policyNumber; 
-   private String providerName; 
- 
+   private int policyNumber; // field to hold the policy number 
+   private String providerName; // field to hold the name of the provider 
+   private static int policyCount; // 
    /**
    Default constructor 
    Setting all the default values 
@@ -13,6 +13,7 @@ public class Policy
    {
      policyNumber = 0; 
      providerName = ""; 
+     policyCount++; // increments everytime a policy object is created 
    }
    /**
    Constructor that accepts arguments 
@@ -30,7 +31,7 @@ public class Policy
      policyNumber = policyNum; 
      providerName = provName;  
    }
-   
+  
    // The following methods are the class's mutator (setter) methods 
    
    /**
@@ -67,6 +68,13 @@ public class Policy
    public String getProviderName()
    {
       return providerName; 
+   }
+   /**
+   Method that returns the number of policy objects
+   */
+   public int getPolicyCount()
+   {  
+      return policyCount; 
    }
 
    /**
@@ -110,6 +118,7 @@ public class Policy
     
      return insurancePrice;
    }
+   
    /**
    The toString method returns a string representation of information in the policy class 
    */
@@ -118,7 +127,6 @@ public class Policy
       return String.format("Policy Number: " + policyNumber + 
       "\nProvider Name: " + providerName + 
       "\nPolicy Price: %.2f" + getPolicyPrice); 
-   
    }
    
 }
