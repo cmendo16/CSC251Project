@@ -1,10 +1,6 @@
 // the policy holder class represents a person that is associated with an insurance policy 
 public class PolicyHolder
 {
-  // move the appropriate fields and methods of the policy class into the policy holder class
-  // note: the fields and methods must be directly associated with a policy holder 
-  // ensure that there are no duplication of fields or methods in the policy and policy holder classes
-  
   // declaring necessary fields that are directly associated with a policy holder
    private String policyHolderFirstName; 
    private String policyHolderLastName; 
@@ -145,6 +141,28 @@ public class PolicyHolder
    {
      return holderSmokingStatus; 
    }
-
+    /**
+   the calculateBMI method calculates and returns the BMI of the policy holder 
+   @return the calculated BMI for the policy holder 
+   */
+   public double calculateBMI()
+   {
+      final int CONVERSION_FACTOR = 703;
+      return (holderWeight * CONVERSION_FACTOR) / (Math.pow(holderHeight, 2));
+   }
+   /**
+   The toString method returns information of the policy holder as a string 
+   */
+   public String toString()
+   {
+     return String.format("Policyholder's First Name: " + policyHolderFirstName
+     + "\nPolicyholder's Last Name: " + policyHolderLastName + 
+     "\nPolicyholder's Age: " + policyHolderAge + 
+     "\nPolicyholder's Smoking Status: " + holderSmokingStatus + 
+     "\nPolicyholder's Height: %.2f" + holderHeight + 
+     "\nPolicyholder's Weight: %.2f" + holderWeight + 
+     "\nPolicyholder's BMI: %.2f" + calculateBMI()); 
+     
+   }
   
 }
