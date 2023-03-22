@@ -1,10 +1,9 @@
 // The following class models an insurance policy for one person 
 public class Policy 
 {
-   // declaring all private fields 
+   // declaring all necessary fields 
    private int policyNumber; 
    private String providerName; 
-   private String holderSmokingStatus; 
  
    /**
    Default constructor 
@@ -52,6 +51,7 @@ public class Policy
    }
    
    // below are the getter methods for each field 
+   
    /**
    The getPolicyNumber returns the policy number for a specific holder
    @return The policy number 
@@ -69,15 +69,6 @@ public class Policy
       return providerName; 
    }
 
-   /**
-   the calculateBMI method calculates and returns the BMI of the policy holder 
-   @return the calculated BMI for the policy holder 
-   */
-   public double calculateBMI()
-   {
-      final int CONVERSION_FACTOR = 703;
-      return (holderWeight * CONVERSION_FACTOR) / (Math.pow(holderHeight, 2));
-   }
    /**
    the getPolicyPrice method calculates and returns the price of the insurance policy
    @return the price of the insurance policy 
@@ -103,13 +94,13 @@ public class Policy
          
       }
      
-     if the policyholder is a smoker, there is an addtional fee
+     // if the policyholder is a smoker, there is an addtional fee
      if (holderSmokingStatus.equalsIgnoreCase("Smoker"))
      {
       insurancePrice += SMOKER_FEE;
      }
      
-     if the policyHolder has a BMI of over 35, there is an additonal fee
+     // if the policyHolder has a BMI of over 35, there is an additonal fee
      if (calculateBMI() > BMI_THRESHOLD)
      {
          double fee = 0; 
@@ -118,6 +109,16 @@ public class Policy
       }
     
      return insurancePrice;
+   }
+   /**
+   The toString method returns a string representation of information in the policy class 
+   */
+   public String toString()
+   {
+      return String.format("Policy Number: " + policyNumber + 
+      "\nProvider Name: " + providerName + 
+      "\nPolicy Price: %.2f" + getPolicyPrice); 
+   
    }
    
 }
