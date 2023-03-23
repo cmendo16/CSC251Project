@@ -4,7 +4,8 @@ public class Policy
    // declaring all necessary fields 
    private int policyNumber; // field to hold the policy number 
    private String providerName; // field to hold the name of the provider 
-   private static int policyCount; // 
+   private static int policyCount; // field to hold the number of policy objects 
+   private PolicyHolder policyHolder; 
    /**
    Default constructor 
    Setting all the default values 
@@ -12,26 +13,24 @@ public class Policy
    public Policy()
    {
      policyNumber = 0; 
-     providerName = ""; 
-     policyCount++; // increments everytime a policy object is created 
+     providerName = "";  
+     policyCount = 0; 
+     policyHolder = new PolicyHolder(); 
+     
    }
    /**
    Constructor that accepts arguments 
-   @param policyNum The policy number 
+   @param policyNumber The policy number 
    @param provName The name of the provider 
-   @param firstName The first name of the policy holder 
-   @param lastName The last name of the policy holder 
-   @param age The policy holder's age 
-   @param smokingStatus The policy holder's smoking status 
-   @param height The policy holder's body weight 
-   @param weight The policy holder's height 
    */
-   public Policy(int policyNum, String provName)
+   public Policy(int policyNum, String provName, PolicyHolder holder)
    {
      policyNumber = policyNum; 
      providerName = provName;  
+     policyCount++; 
+     // creating a new policyHolder object, and passing the parameter "holder" as an argument 
+     policyHolder = new PolicyHolder(holder); 
    }
-  
    // The following methods are the class's mutator (setter) methods 
    
    /**
@@ -40,7 +39,7 @@ public class Policy
    */
    public void setPolicyNumber(int policyNum) 
    {
-      policyNumber = policyNum; 
+     policyNumber = policyNum; 
    }
    /**
    the setProviderName method sets the name of the provider 
@@ -48,9 +47,17 @@ public class Policy
    */
    public void setProviderName(String provName) 
    {
-       providerName = provName; 
+    providerName = provName; 
    }
-   
+   /**
+   The setPolicyHolder method sets the policy holder 
+   @param holder The policy holder 
+   */
+   public void setPolicyHolder(PolicyHolder holder) 
+   {
+     policyHolder = new PolicyHolder(holder); 
+   }
+  
    // below are the getter methods for each field 
    
    /**
@@ -71,10 +78,19 @@ public class Policy
    }
    /**
    Method that returns the number of policy objects
+   @return The number of policy object 
    */
    public int getPolicyCount()
    {  
       return policyCount; 
+   }
+    /**
+   The getPolicyHolder method gets the policy holder 
+   @return holder The policy holder 
+   */
+   public PolicyHolder getPolicyHolder() 
+   {
+      return new PolicyHolder(policyHolder); // returning a copy of the instructor object 
    }
 
    /**
@@ -96,23 +112,23 @@ public class Policy
      // using if-else structures in order to determine if any additional fees need to be added to the insurance policy 
      
      // if the policyholder is over 50 years old, there is an additonal fee
-      if (policyHolderAge > AGE_THRESHOLD)
+      if (policyHolder.getHolderAge() > AGE_THRESHOLD)
       {
          insurancePrice += AGE_FEE;
          
       }
      
      // if the policyholder is a smoker, there is an addtional fee
-     if (holderSmokingStatus.equalsIgnoreCase("Smoker"))
+     if (policyHolder.getSmokingStatus().equalsIgnoreCase("Smoker"))
      {
       insurancePrice += SMOKER_FEE;
      }
      
      // if the policyHolder has a BMI of over 35, there is an additonal fee
-     if (calculateBMI() > BMI_THRESHOLD)
+     if (policyHolder.calculateBMI() > BMI_THRESHOLD)
      {
          double fee = 0; 
-         fee = (calculateBMI() - BMI_THRESHOLD) * BMI_ADDITIONAL_FEE;
+         fee = (policyHolder.calculateBMI() - BMI_THRESHOLD) * BMI_ADDITIONAL_FEE;
          insurancePrice += fee;
       }
     
@@ -124,9 +140,12 @@ public class Policy
    */
    public String toString()
    {
-      return String.format("Policy Number: " + policyNumber + 
-      "\nProvider Name: " + providerName + 
-      "\nPolicy Price: %.2f" + getPolicyPrice); 
+      return String.format("Policy Number " + policyNumber + 
+      "\nProvider Name: " +  providerName + 
+      policyHolder.toString() + 
+      "\nPolicy Price: $%.2f", getPolicyPrice()); 
+      
+      
    }
    
 }
